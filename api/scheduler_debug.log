@@ -1,0 +1,76 @@
+2025-12-19T13:14:29+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":71},"scheduling":{"execute_at":"2025-12-19T13:29:29Z","timezone":"UTC"}}
+2025-12-19T13:14:29+00:00 RESULT for image 71: {"id":"67262059-6a84-4289-bca2-364d4ff59eb4","status":"scheduled"}
+2025-12-19T13:17:56+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":72},"scheduling":{"execute_at":"2025-12-19T13:23:56Z","timezone":"UTC"}}
+2025-12-19T13:17:56+00:00 RESULT for image 72: {"id":"406efebf-ad00-426a-b7dc-b741f7d0e2ac","status":"scheduled"}
+2025-12-22T03:50:17+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":73},"scheduling":{"execute_at":"2025-12-22T03:56:17Z","timezone":"UTC"}}
+2025-12-22T03:50:17+00:00 RESULT for image 73: {"id":"c2cf246b-60c0-4966-b79d-92c0b4ff3475","status":"scheduled"}
+2025-12-22T03:51:28+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":74},"scheduling":{"execute_at":"2025-12-22T03:57:28Z","timezone":"UTC"}}
+2025-12-22T03:51:28+00:00 RESULT for image 74: {"id":"329854f3-b0ce-4c14-bbc1-ad89bd677663","status":"scheduled"}
+2025-12-22T03:59:31+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":75},"scheduling":{"execute_at":"2025-12-22T04:05:31Z","timezone":"UTC"}}
+2025-12-22T03:59:31+00:00 RESULT for image 75: {"id":"fa4afe0c-910f-4756-b9c5-f896eb31424e","status":"scheduled"}
+2025-12-22T04:01:14+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":76},"scheduling":{"execute_at":"2025-12-22T04:07:14Z","timezone":"UTC"}}
+2025-12-22T04:01:14+00:00 RESULT for image 76: {"id":"996c6f35-3b0f-4bb4-80b0-cd0ca599ea80","status":"scheduled"}
+2025-12-22T04:24:16+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":77},"scheduling":{"execute_at":"2025-12-22T04:30:16Z","timezone":"UTC"}}
+2025-12-22T04:24:16+00:00 RESULT for image 77: {"id":"78ccfd7f-b954-445f-821f-9a8514047a38","status":"scheduled"}
+2025-12-22T04:40:57+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":78},"scheduling":{"execute_at":"2025-12-22T04:46:57Z","timezone":"UTC"}}
+2025-12-22T04:40:57+00:00 RESULT for image 78: {"id":"f03bea71-912a-4c4a-82d8-a0cbe9ebb688","status":"scheduled"}
+2025-12-22T05:08:39+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":79},"scheduling":{"execute_at":"2025-12-22T05:14:39Z","timezone":"UTC"}}
+2025-12-22T05:08:39+00:00 RESULT for image 79: {"id":"75b16566-be40-4dc8-8a05-1b614ef9a147","status":"scheduled"}
+2025-12-22T05:33:43+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":80},"scheduling":{"execute_at":"2025-12-22T05:39:43Z","timezone":"UTC"}}
+2025-12-22T05:33:43+00:00 RESULT for image 80: {"id":"2849732d-0943-43e5-bae6-d6875e837a98","status":"scheduled"}
+2025-12-22T05:57:35+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":81},"scheduling":{"execute_at":"2025-12-22T06:03:35Z","timezone":"UTC"}}
+2025-12-22T05:57:36+00:00 RESULT for image 81: {"id":"d8efb255-c585-4b11-9c10-d97790a12153","status":"scheduled"}
+2025-12-22T06:00:39+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":82},"scheduling":{"execute_at":"2025-12-22T06:06:39Z","timezone":"UTC"}}
+2025-12-22T06:00:39+00:00 RESULT for image 82: {"id":"22153ca5-aa91-4432-a3b3-1b0d1f5f3872","status":"scheduled"}
+2025-12-22T06:01:33+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":83},"scheduling":{"execute_at":"2025-12-22T06:07:33Z","timezone":"UTC"}}
+2025-12-22T06:01:33+00:00 RESULT for image 83: {"id":"1c168b30-adf7-40c9-8e97-924982b7909e","status":"scheduled"}
+2025-12-22T06:02:06+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":84},"scheduling":{"execute_at":"2025-12-22T06:08:06Z","timezone":"UTC"}}
+2025-12-22T06:02:06+00:00 RESULT for image 84: {"id":"dbeeef77-b9d4-4a1d-8564-5c64c9dd0d74","status":"scheduled"}
+2025-12-22T06:22:34+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":85},"scheduling":{"execute_at":"2025-12-22T06:28:34Z","timezone":"UTC"}}
+2025-12-22T06:22:34+00:00 RESULT for image 85: {"id":"8c06d64d-a922-42f1-8699-739729d7c5d4","status":"scheduled"}
+2025-12-22T06:28:46+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":86},"scheduling":{"execute_at":"2025-12-22T06:34:46Z","timezone":"UTC"}}
+2025-12-22T06:28:46+00:00 RESULT for image 86: {"id":"ce26548b-1358-4656-9096-9f7c6b4238c8","status":"scheduled"}
+2025-12-22T06:37:04+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":87},"scheduling":{"execute_at":"2025-12-22T06:43:04Z","timezone":"UTC"}}
+2025-12-22T06:37:04+00:00 RESULT for image 87: {"id":"ad64f933-c02f-435f-b5b4-c12269d28b8b","status":"scheduled"}
+2025-12-23T06:45:46+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":90},"scheduling":{"execute_at":"2025-12-23T06:51:46Z","timezone":"UTC"}}
+2025-12-23T06:45:46+00:00 RESULT for image 90: {"id":"00d4ca4e-2565-4fea-9668-214cadce2945","status":"scheduled"}
+2025-12-23T06:45:46+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":91},"scheduling":{"execute_at":"2025-12-23T06:51:46Z","timezone":"UTC"}}
+2025-12-23T06:45:46+00:00 RESULT for image 91: {"id":"4ed62bd4-84b1-49c1-b29a-b6100a4806b8","status":"scheduled"}
+2025-12-23T07:11:56+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":92},"scheduling":{"execute_at":"2025-12-23T07:17:56Z","timezone":"UTC"}}
+2025-12-23T07:11:57+00:00 RESULT for image 92: {"id":"c9118ed3-3d51-4c2f-b545-5c487d3777ca","status":"scheduled"}
+2025-12-23T07:12:48+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":93},"scheduling":{"execute_at":"2025-12-23T07:18:48Z","timezone":"UTC"}}
+2025-12-23T07:12:48+00:00 RESULT for image 93: {"id":"3a8aed94-6dd5-4172-9bfe-0377aa57ef11","status":"scheduled"}
+2025-12-23T07:12:48+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":94},"scheduling":{"execute_at":"2025-12-23T07:18:48Z","timezone":"UTC"}}
+2025-12-23T07:12:48+00:00 RESULT for image 94: {"id":"42222c3f-8444-4e4c-beb8-cb7c6bab08ab","status":"scheduled"}
+2025-12-23T08:01:13+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":95},"scheduling":{"execute_at":"2025-12-23T08:07:13Z","timezone":"UTC"}}
+2025-12-23T08:01:13+00:00 RESULT for image 95: {"id":"efe05348-a478-490d-a184-a786a91ff726","status":"scheduled"}
+2025-12-23T08:01:13+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":96},"scheduling":{"execute_at":"2025-12-23T08:07:13Z","timezone":"UTC"}}
+2025-12-23T08:01:13+00:00 RESULT for image 96: {"id":"5c87d727-9d18-41f8-b356-4e860843fd8e","status":"scheduled"}
+2025-12-23T08:06:14+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":97},"scheduling":{"execute_at":"2025-12-23T08:12:14Z","timezone":"UTC"}}
+2025-12-23T08:06:14+00:00 RESULT for image 97: {"id":"efaec578-3213-4b47-abff-c2ace3b928c8","status":"scheduled"}
+2025-12-23T08:06:14+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":98},"scheduling":{"execute_at":"2025-12-23T08:12:14Z","timezone":"UTC"}}
+2025-12-23T08:06:14+00:00 RESULT for image 98: {"id":"1f7c42ca-01f1-42ab-8014-8cf974e61af2","status":"scheduled"}
+2025-12-23T08:29:20+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":99},"scheduling":{"execute_at":"2025-12-23T08:35:20Z","timezone":"UTC"}}
+2025-12-23T08:29:20+00:00 RESULT for image 99: {"id":"8178ccc2-fa94-436f-a40d-cc98463286e9","status":"scheduled"}
+2025-12-23T08:29:20+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":100},"scheduling":{"execute_at":"2025-12-23T08:35:20Z","timezone":"UTC"}}
+2025-12-23T08:29:20+00:00 RESULT for image 100: {"id":"e72bd0f5-db58-4221-ad15-9f652404c626","status":"scheduled"}
+2025-12-23T08:37:11+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":101},"scheduling":{"execute_at":"2025-12-23T08:43:11Z","timezone":"UTC"}}
+2025-12-23T08:37:11+00:00 RESULT for image 101: {"id":"b3e3ba77-2085-45f6-8d50-bd79fafdab51","status":"scheduled"}
+2025-12-23T08:44:14+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":102},"scheduling":{"execute_at":"2025-12-23T08:50:14Z","timezone":"UTC"}}
+2025-12-23T08:44:14+00:00 RESULT for image 102: {"id":"5a9966b7-64d7-461a-bf75-f9556fd23b13","status":"scheduled"}
+2025-12-24T03:23:08+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":103},"scheduling":{"execute_at":"2025-12-24T03:29:08Z","timezone":"UTC"}}
+2025-12-24T03:23:08+00:00 RESULT for image 103: Failed to connect to localhost port 3000: Connection refused
+2025-12-24T03:26:15+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":104},"scheduling":{"execute_at":"2025-12-24T03:32:15Z","timezone":"UTC"}}
+2025-12-24T03:26:15+00:00 RESULT for image 104: {"id":"a9834242-3375-46b4-ad34-19b536537832","status":"scheduled"}
+2025-12-24T03:35:46+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":105},"scheduling":{"execute_at":"2025-12-24T03:41:46Z","timezone":"UTC"}}
+2025-12-24T03:35:46+00:00 RESULT for image 105: {"id":"6a301120-5b81-464f-a461-725d81c3019f","status":"scheduled"}
+2025-12-24T04:41:48+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":106},"scheduling":{"execute_at":"2025-12-24T04:47:48Z","timezone":"UTC"}}
+2025-12-24T04:41:48+00:00 RESULT for image 106: {"id":"49eb5e0a-a49b-478b-8c6f-c05853e16a59","status":"scheduled"}
+2025-12-24T04:42:24+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":107},"scheduling":{"execute_at":"2025-12-24T04:48:24Z","timezone":"UTC"}}
+2025-12-24T04:42:24+00:00 RESULT for image 107: {"id":"1ab77c8d-a338-4fc4-b91e-4f8a5ff42c3b","status":"scheduled"}
+2025-12-24T04:59:39+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":108},"scheduling":{"execute_at":"2025-12-24T05:05:39Z","timezone":"UTC"}}
+2025-12-24T04:59:39+00:00 RESULT for image 108: {"id":"93254886-e589-474e-8b6b-548610bc81de","status":"scheduled"}
+2025-12-24T05:06:59+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":109},"scheduling":{"execute_at":"2025-12-24T05:12:59Z","timezone":"UTC"}}
+2025-12-24T05:06:59+00:00 RESULT for image 109: {"id":"e5d6c839-7759-45a0-b854-cb4f9dd9c838","status":"scheduled"}
+2025-12-24T05:13:19+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":110},"scheduling":{"execute_at":"2025-12-24T05:28:19Z","timezone":"UTC"}}
+2025-12-24T05:13:19+00:00 RESULT for image 110: {"id":"ecbead05-36dd-41fe-80aa-adb0f6398351","status":"scheduled"}

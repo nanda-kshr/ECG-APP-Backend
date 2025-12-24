@@ -1,0 +1,10 @@
+
+.env 
+
+*.png
+*.jpg
+*.jpeg
+
+.json
+
+service-account.json
