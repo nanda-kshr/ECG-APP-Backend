@@ -28,6 +28,7 @@ try {
 
     $name = trim($data['name'] ?? '');
     $email = trim($data['email'] ?? '');
+    $phone = trim($data['phone'] ?? '');
     $password = $data['password'] ?? '';
     // Only allow 'doctor' or 'user' via public registration. Do NOT accept 'admin'.
     $requestedRole = strtolower(trim($data['role'] ?? ''));
@@ -48,7 +49,7 @@ try {
     }
     $role = $requestedRole;
 
-    if ($name === '' || $email === '' || $password === '') {
+    if ($name === '' || $email === '' || $password === '' || $phone === '') {
         http_response_code(400);
         echo json_encode(['success' => false, 'error' => 'Missing required fields']);
         exit;
@@ -56,6 +57,12 @@ try {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
         echo json_encode(['success' => false, 'error' => 'Invalid email']);
+        exit;
+    }
+    // Basic phone validation: 10 digits
+    if (!preg_match('/^\d{10}$/', $phone)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Phone number must be exactly 10 digits']);
         exit;
     }
     if (strlen($password) < 8) {
@@ -74,8 +81,8 @@ try {
 
     // Hash password securely (use password_hash instead of storing plain text)
     $hash = password_hash($password, PASSWORD_DEFAULT);
-    $ins = $pdo->prepare('INSERT INTO users (name, email, password_hash, role) VALUES (:name,:email,:hash,:role)');
-    $ins->execute(['name' => $name, 'email' => $email, 'hash' => $hash, 'role' => $role]);
+    $ins = $pdo->prepare('INSERT INTO users (name, email, phone, password_hash, role) VALUES (:name, :email, :phone, :hash, :role)');
+    $ins->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'hash' => $hash, 'role' => $role]);
 
     echo json_encode(['success' => true, 'userId' => (int) $pdo->lastInsertId()]);
 } catch (Throwable $e) {

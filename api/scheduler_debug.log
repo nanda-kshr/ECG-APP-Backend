@@ -74,3 +74,23 @@
 2025-12-24T05:06:59+00:00 RESULT for image 109: {"id":"e5d6c839-7759-45a0-b854-cb4f9dd9c838","status":"scheduled"}
 2025-12-24T05:13:19+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":110},"scheduling":{"execute_at":"2025-12-24T05:28:19Z","timezone":"UTC"}}
 2025-12-24T05:13:19+00:00 RESULT for image 110: {"id":"ecbead05-36dd-41fe-80aa-adb0f6398351","status":"scheduled"}
+2025-12-27T03:05:24+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":111},"scheduling":{"execute_at":"2025-12-27T03:20:24Z","timezone":"UTC"}}
+2025-12-27T03:05:24+00:00 RESULT for image 111: Failed to connect to localhost port 3000: Connection refused
+2025-12-27T03:40:31+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":112},"scheduling":{"execute_at":"2025-12-27T03:55:31Z","timezone":"UTC"}}
+2025-12-27T03:40:31+00:00 RESULT for image 112: Failed to connect to localhost port 3000: Connection refused
+2025-12-27T03:40:31+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.190.79.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":113},"scheduling":{"execute_at":"2025-12-27T03:55:31Z","timezone":"UTC"}}
+2025-12-27T03:40:31+00:00 RESULT for image 113: Failed to connect to localhost port 3000: Connection refused
+2026-01-08T03:35:07+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.111.252.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":114},"scheduling":{"execute_at":"2026-01-08T03:50:07Z","timezone":"UTC"}}
+2026-01-08T03:35:07+00:00 RESULT for image 114: Failed to connect to localhost port 3000: Connection refused
+2026-01-08T03:35:54+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.111.252.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":115},"scheduling":{"execute_at":"2026-01-08T03:50:54Z","timezone":"UTC"}}
+2026-01-08T03:35:54+00:00 RESULT for image 115: Failed to connect to localhost port 3000: Connection refused
+2026-01-08T03:36:17+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.111.252.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":116},"scheduling":{"execute_at":"2026-01-08T03:51:17Z","timezone":"UTC"}}
+2026-01-08T03:36:17+00:00 RESULT for image 116: Failed to connect to localhost port 3000: Connection refused
+2026-01-08T03:36:37+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.111.252.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":117},"scheduling":{"execute_at":"2026-01-08T03:51:37Z","timezone":"UTC"}}
+2026-01-08T03:36:37+00:00 RESULT for image 117: Failed to connect to localhost port 3000: Connection refused
+2026-01-08T04:39:52+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.111.252.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":118},"scheduling":{"execute_at":"2026-01-08T04:54:52Z","timezone":"UTC"}}
+2026-01-08T04:39:52+00:00 RESULT for image 118: Failed to connect to localhost port 3000: Connection refused
+2026-01-08T04:41:22+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.111.252.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":119},"scheduling":{"execute_at":"2026-01-08T04:56:22Z","timezone":"UTC"}}
+2026-01-08T04:41:22+00:00 RESULT for image 119: Failed to connect to localhost port 3000: Connection refused
+2026-01-08T04:41:22+00:00 SCHEDULER POST to http://localhost:3000/jobs payload: {"type":"oneoff","target":{"url":"http:\/\/10.111.252.103\/saveetha_cardio\/api\/close_task.php","method":"POST"},"payload":{"imageid":120},"scheduling":{"execute_at":"2026-01-08T04:56:22Z","timezone":"UTC"}}
+2026-01-08T04:41:22+00:00 RESULT for image 120: Failed to connect to localhost port 3000: Connection refused

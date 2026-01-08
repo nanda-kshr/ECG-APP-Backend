@@ -91,7 +91,7 @@ try {
     $taskId = (int) $pdo->lastInsertId();
 
     // history
-    $pdo->prepare('INSERT INTO task_history (task_id, changed_by, old_status, new_status, comment) VALUES (:tid,:uid,NULL,:new,:comment)')->execute(['tid' => $taskId, 'uid' => $userId, 'new' => 'pending', 'comment' => 'Task created manually']);
+    $pdo->prepare('INSERT INTO task_history (task_id, changed_by, old_status, new_status, comment) VALUES (:tid,:uid,NULL,:new,:comment)')->execute(['tid' => $taskId, 'uid' => $userId, 'new' => 'pending', 'comment' => 'ECG created manually']);
 
     $imagesUploaded = 0;
     $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];

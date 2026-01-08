@@ -32,7 +32,8 @@ try {
     // --- begin: robust input parsing ---
     $contentType = $_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? '';
     $raw = file_get_contents('php://input');
-    if ($raw === false) $raw = '';
+    if ($raw === false)
+        $raw = '';
 
     // remove UTF-8 BOM if present
     if (strpos($raw, "\xEF\xBB\xBF") === 0) {
@@ -70,15 +71,15 @@ try {
         $data = $_POST;
     }
 
-    $identifier = trim((string)($data['email'] ?? $data['username'] ?? $data['user'] ?? ''));
+    $identifier = trim((string) ($data['email'] ?? $data['username'] ?? $data['user'] ?? ''));
     $password = $data['password'] ?? $data['pass'] ?? $data['pwd'] ?? '';
     // Optional role filter: if client provides role, only authenticate users of that role
-    $requestedRole = isset($data['role']) ? trim((string)$data['role']) : null;
+    $requestedRole = isset($data['role']) ? trim((string) $data['role']) : null;
     // --- end: robust input parsing ---
 
     if ($identifier === '' || $password === '') {
         http_response_code(400);
-        $resp = ['success'=>false,'error'=>'Missing username/email or password'];
+        $resp = ['success' => false, 'error' => 'Missing username/email or password'];
         if ($is_debug) {
             $resp['data'] = $data;
             $resp['raw'] = $raw;
@@ -95,61 +96,93 @@ try {
     try {
         $colStmt = $pdo->prepare("SHOW COLUMNS FROM users LIKE 'username'");
         $colStmt->execute();
-        $hasUsername = (bool)$colStmt->fetch(PDO::FETCH_ASSOC);
-    } catch (Throwable $ignore) {}
+        $hasUsername = (bool) $colStmt->fetch(PDO::FETCH_ASSOC);
+    } catch (Throwable $ignore) {
+    }
 
     try {
         $colStmt = $pdo->prepare("SHOW COLUMNS FROM users LIKE 'password_hash'");
         $colStmt->execute();
-        $hasPasswordHash = (bool)$colStmt->fetch(PDO::FETCH_ASSOC);
-    } catch (Throwable $ignore) {}
+        $hasPasswordHash = (bool) $colStmt->fetch(PDO::FETCH_ASSOC);
+    } catch (Throwable $ignore) {
+    }
 
     try {
         $colStmt = $pdo->prepare("SHOW COLUMNS FROM users LIKE 'password'");
         $colStmt->execute();
-        $hasPlainPassword = (bool)$colStmt->fetch(PDO::FETCH_ASSOC);
-    } catch (Throwable $ignore) {}
+        $hasPlainPassword = (bool) $colStmt->fetch(PDO::FETCH_ASSOC);
+    } catch (Throwable $ignore) {
+    }
+
+    // Check for 'phone' column
+    $hasPhone = false;
+    try {
+        $colStmt = $pdo->prepare("SHOW COLUMNS FROM users LIKE 'phone'");
+        $colStmt->execute();
+        $hasPhone = (bool) $colStmt->fetch(PDO::FETCH_ASSOC);
+    } catch (Throwable $ignore) {
+    }
 
     // Build SELECT list based on existing columns
     $selectCols = ['id', 'email', 'name', 'role'];
-    if ($hasUsername) $selectCols[] = 'username';
-    if ($hasPasswordHash) $selectCols[] = 'password_hash';
-    if ($hasPlainPassword) $selectCols[] = 'password';
+    if ($hasUsername)
+        $selectCols[] = 'username';
+    if ($hasPhone)
+        $selectCols[] = 'phone';
+    if ($hasPasswordHash)
+        $selectCols[] = 'password_hash';
+    if ($hasPlainPassword)
+        $selectCols[] = 'password';
     $selectList = implode(', ', $selectCols);
 
+    // Build the query dynamically based on available columns
+    $conditions = ["email = :id"];
+    $params = ['id' => $identifier];
+
     if ($hasUsername) {
-        // Authenticate by email OR username
-        $stmt = $pdo->prepare("SELECT $selectList FROM users WHERE email = :id OR username = :id_alt LIMIT 1");
-        $stmt->execute(['id' => $identifier, 'id_alt' => $identifier]);
-    } else {
-        // Authenticate by email only
-        $stmt = $pdo->prepare("SELECT $selectList FROM users WHERE email = :id LIMIT 1");
-        $stmt->execute(['id' => $identifier]);
+        $conditions[] = "username = :id_username";
+        $params['id_username'] = $identifier;
     }
+    if ($hasPhone) {
+        $conditions[] = "phone = :id_phone";
+        $params['id_phone'] = $identifier;
+    }
+
+    $whereClause = implode(' OR ', $conditions);
+    $stmt = $pdo->prepare("SELECT $selectList FROM users WHERE $whereClause LIMIT 1");
+    $stmt->execute($params);
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {
-        // Helpful debug: log when no user matched the identifier
+        // Distinguish between "User not found" and "Invalid Password"
+        // This allows the frontend to prompt for sign-up
         if ($is_debug) {
             error_log("login.php: no user found for identifier: $identifier");
         }
+        http_response_code(404);
+        echo json_encode([
+            'success' => false,
+            'error' => 'Account does not exist',
+            'code' => 'account_not_found'
+        ]);
+        exit;
     }
 
     $authOk = false;
     if ($user) {
         // Prefer secure bcrypt verification if password_hash column exists
-        if ($hasPasswordHash && isset($user['password_hash']) && (string)$user['password_hash'] !== '') {
-            $authOk = password_verify((string)$password, (string)$user['password_hash']);
+        if ($hasPasswordHash && isset($user['password_hash']) && (string) $user['password_hash'] !== '') {
+            $authOk = password_verify((string) $password, (string) $user['password_hash']);
         }
         // Fallback: legacy plain text password (development-only schemas)
         if (!$authOk && $hasPlainPassword && isset($user['password'])) {
-            $authOk = ((string)$password === (string)$user['password']);
+            $authOk = ((string) $password === (string) $user['password']);
         }
     }
 
     if ($authOk) {
-        if ($requestedRole !== null && strcasecmp($requestedRole, (string)$user['role']) !== 0) {
+        if ($requestedRole !== null && strcasecmp($requestedRole, (string) $user['role']) !== 0) {
             http_response_code(401);
             echo json_encode(['success' => false, 'error' => 'Invalid credentials']);
             exit;
@@ -168,26 +201,27 @@ try {
         $_SESSION['role'] = $user['role'] ?? null;
 
         // If client sent an FCM token during login, store it for this user
-        $maybeToken = isset($data['fcm_token']) ? trim((string)$data['fcm_token']) : '';
+        $maybeToken = isset($data['fcm_token']) ? trim((string) $data['fcm_token']) : '';
         if ($maybeToken !== '') {
             try {
                 $upd = $pdo->prepare('UPDATE users SET fcm_token = :tok WHERE id = :id');
                 $upd->execute(['tok' => $maybeToken, 'id' => $user['id']]);
             } catch (Throwable $ignore) {
                 // non-fatal; log if debugging
-                if ($is_debug) error_log('login.php: failed to save fcm_token: ' . $ignore->getMessage());
+                if ($is_debug)
+                    error_log('login.php: failed to save fcm_token: ' . $ignore->getMessage());
             }
         }
 
         echo json_encode(['success' => true, 'user' => $user]);
     } else {
         http_response_code(401);
-        echo json_encode(['success'=>false,'error'=>'Invalid credentials']);
+        echo json_encode(['success' => false, 'error' => 'Invalid credentials']);
     }
 } catch (Throwable $e) {
-    error_log('login error: '.$e->getMessage());
+    error_log('login error: ' . $e->getMessage());
     http_response_code(500);
-    $resp = ['success'=>false,'error'=>'Server error'];
+    $resp = ['success' => false, 'error' => 'Server error'];
     $resp['detail'] = $e->getMessage(); // always include detail for now
     echo json_encode($resp);
 }

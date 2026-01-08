@@ -133,3 +133,102 @@
 2025-12-24T05:25:01+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
 2025-12-24T05:28:20+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
 2025-12-24T05:28:21+00:00 | success | token=drI03yBjTbm2zMbCf9Zu...
+2025-12-27T03:05:23+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
+2025-12-27T03:05:24+00:00 | success | token=ecDfUJEYQN2lELbgg1pr...
+2025-12-27T03:40:31+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
+2025-12-27T03:40:31+00:00 | success | token=ecDfUJEYQN2lELbgg1pr...
+2025-12-27T03:47:40+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
+2026-01-08T03:35:07+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
+2026-01-08T03:35:07+00:00 | http_error | token=ecDfUJEYQN2lELbgg1pr... | code=404 | body={
+  "error": {
+    "code": 404,
+    "message": "Requested entity was not found.",
+    "status": "NOT_FOUND",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.firebase.fcm.v1.FcmError",
+        "errorCode": "UNREGISTERED"
+      }
+    ]
+  }
+}
+
+2026-01-08T03:35:53+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
+2026-01-08T03:35:54+00:00 | http_error | token=ecDfUJEYQN2lELbgg1pr... | code=404 | body={
+  "error": {
+    "code": 404,
+    "message": "Requested entity was not found.",
+    "status": "NOT_FOUND",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.firebase.fcm.v1.FcmError",
+        "errorCode": "UNREGISTERED"
+      }
+    ]
+  }
+}
+
+2026-01-08T03:36:16+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
+2026-01-08T03:36:17+00:00 | http_error | token=ecDfUJEYQN2lELbgg1pr... | code=404 | body={
+  "error": {
+    "code": 404,
+    "message": "Requested entity was not found.",
+    "status": "NOT_FOUND",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.firebase.fcm.v1.FcmError",
+        "errorCode": "UNREGISTERED"
+      }
+    ]
+  }
+}
+
+2026-01-08T03:36:37+00:00 | success | token=e9gwFB6aSaeigDo-Kuv9...
+2026-01-08T03:36:37+00:00 | http_error | token=ecDfUJEYQN2lELbgg1pr... | code=404 | body={
+  "error": {
+    "code": 404,
+    "message": "Requested entity was not found.",
+    "status": "NOT_FOUND",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.firebase.fcm.v1.FcmError",
+        "errorCode": "UNREGISTERED"
+      }
+    ]
+  }
+}
+
+2026-01-08T04:39:51+00:00 | success | token=efQiclB8RAiT0LqKkAP-...
+2026-01-08T04:39:52+00:00 | http_error | token=ecDfUJEYQN2lELbgg1pr... | code=404 | body={
+  "error": {
+    "code": 404,
+    "message": "Requested entity was not found.",
+    "status": "NOT_FOUND",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.firebase.fcm.v1.FcmError",
+        "errorCode": "UNREGISTERED"
+      }
+    ]
+  }
+}
+
+2026-01-08T04:40:20+00:00 | success | token=efQiclB8RAiT0LqKkAP-...
+2026-01-08T04:41:21+00:00 | success | token=efQiclB8RAiT0LqKkAP-...
+2026-01-08T04:41:22+00:00 | http_error | token=ecDfUJEYQN2lELbgg1pr... | code=404 | body={
+  "error": {
+    "code": 404,
+    "message": "Requested entity was not found.",
+    "status": "NOT_FOUND",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.firebase.fcm.v1.FcmError",
+        "errorCode": "UNREGISTERED"
+      }
+    ]
+  }
+}
+
+2026-01-08T04:42:05+00:00 | success | token=efQiclB8RAiT0LqKkAP-...
+2026-01-08T04:42:41+00:00 | success | token=efQiclB8RAiT0LqKkAP-...
+2026-01-08T05:09:13+00:00 | success | token=efQiclB8RAiT0LqKkAP-...

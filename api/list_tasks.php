@@ -70,6 +70,24 @@ try {
 
     $whereClause = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
 
+    // Calculate total matching tasks (ignoring limit/offset)
+    // We reuse the same where clause and params
+    $totalCount = 0;
+    try {
+        $countSql = "SELECT COUNT(*) as total FROM tasks t $whereClause";
+        $countStmt = $pdo->prepare($countSql);
+        foreach ($params as $key => $val) {
+            $countStmt->bindValue(":$key", $val);
+        }
+        $countStmt->execute();
+        $cntRow = $countStmt->fetch(PDO::FETCH_ASSOC);
+        $totalCount = $cntRow ? (int) $cntRow['total'] : 0;
+    } catch (Throwable $e) {
+        // Fallback or log if count fails, though it shouldn't
+        if ($is_debug)
+            error_log("Count query failed: " . $e->getMessage());
+    }
+
     $sql = "SELECT 
                 t.id, t.patient_id, t.user_id, t.assigned_doctor_id, t.assigned_pg_id,
                 t.priority, t.user_notes, t.assigned_at, t.created_at,
@@ -97,7 +115,7 @@ try {
         $pstmt->execute();
         $pRows = $pstmt->fetchAll(PDO::FETCH_COLUMN, 0);
         if (empty($pRows)) {
-            echo json_encode(['success' => true, 'tasks' => [], 'count' => 0]);
+            echo json_encode(['success' => true, 'tasks' => [], 'count' => 0, 'total_count' => $totalCount]);
             exit;
         }
 
@@ -199,7 +217,7 @@ try {
         unset($t);
     }
 
-    echo json_encode(['success' => true, 'tasks' => $tasks, 'count' => count($tasks)]);
+    echo json_encode(['success' => true, 'tasks' => $tasks, 'count' => count($tasks), 'total_count' => $totalCount]);
 
 } catch (Throwable $e) {
     error_log('list_tasks error: ' . $e->getMessage());
