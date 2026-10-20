@@ -1,5 +1,9 @@
 <?php
 // create_task.php - User creates a task manually (without bulk image upload) and auto-assigns to duty doctor
+@ini_set('max_execution_time', '300');
+@ini_set('max_input_time', '300');
+@ini_set('memory_limit', '256M');
+
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Vary: Origin');
@@ -12,6 +16,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 $is_debug = (getenv('DEBUG') === '1');
+
+// Helper to optionally compress and resize images via GD if available
+function compressAndSaveImage($source, $destination, $ext, $quality = 75, $maxDim = 1800) {
+    if (!extension_loaded('gd')) return false;
+    $info = @getimagesize($source);
+    if (!$info) return false;
+    list($width, $height, $type) = $info;
+
+    $image = null;
+    switch ($type) {
+        case IMAGETYPE_JPEG:
+            $image = @imagecreatefromjpeg($source);
+            break;
+        case IMAGETYPE_PNG:
+            $image = @imagecreatefrompng($source);
+            break;
+        case IMAGETYPE_GIF:
+            $image = @imagecreatefromgif($source);
+            break;
+        case IMAGETYPE_WEBP:
+            if (function_exists('imagecreatefromwebp')) {
+                $image = @imagecreatefromwebp($source);
+            }
+            break;
+    }
+    if (!$image) return false;
+
+    // Handle EXIF orientation for JPEGs
+    if ($type === IMAGETYPE_JPEG && function_exists('exif_read_data')) {
+        $exif = @exif_read_data($source);
+        if (!empty($exif['Orientation'])) {
+            switch ($exif['Orientation']) {
+                case 3: $image = imagerotate($image, 180, 0); break;
+                case 6: $image = imagerotate($image, -90, 0); break;
+                case 8: $image = imagerotate($image, 90, 0); break;
+            }
+            $width = imagesx($image);
+            $height = imagesy($image);
+        }
+    }
+
+    if ($width > $maxDim || $height > $maxDim) {
+        if ($width > $height) {
+            $newW = $maxDim;
+            $newH = (int) round(($height / $width) * $maxDim);
+        } else {
+            $newH = $maxDim;
+            $newW = (int) round(($width / $height) * $maxDim);
+        }
+        $resized = imagecreatetruecolor($newW, $newH);
+        if ($type === IMAGETYPE_PNG || $type === IMAGETYPE_GIF) {
+            imagealphablending($resized, false);
+            imagesavealpha($resized, true);
+        }
+        imagecopyresampled($resized, $image, 0, 0, 0, 0, $newW, $newH, $width, $height);
+        imagedestroy($image);
+        $image = $resized;
+    }
+
+    $ok = false;
+    if ($type === IMAGETYPE_PNG) {
+        $ok = @imagepng($image, $destination, 6);
+    } elseif ($type === IMAGETYPE_GIF) {
+        $ok = @imagegif($image, $destination);
+    } elseif ($type === IMAGETYPE_WEBP && function_exists('imagewebp')) {
+        $ok = @imagewebp($image, $destination, $quality);
+    } else {
+        $ok = @imagejpeg($image, $destination, $quality);
+    }
+    imagedestroy($image);
+    return $ok;
+}
 
 try {
     require_once __DIR__ . '/db.php';
@@ -84,6 +160,14 @@ try {
 
     // Detect multipart vs JSON
     $isMultipart = isset($_SERVER['CONTENT_TYPE']) && stripos($_SERVER['CONTENT_TYPE'], 'multipart/form-data') !== false;
+
+    // Check if post_max_size was exceeded (PHP empties $_POST and $_FILES if payload exceeds post_max_size)
+    if ($isMultipart && empty($_POST) && empty($_FILES) && isset($_SERVER['CONTENT_LENGTH']) && (int) $_SERVER['CONTENT_LENGTH'] > 0) {
+        http_response_code(413);
+        echo json_encode(['success' => false, 'error' => 'Upload payload exceeds server post_max_size limit']);
+        exit;
+    }
+
     if ($isMultipart) {
         $data = $_POST; // form fields
     } else {
@@ -183,20 +267,46 @@ try {
         $size = is_array($files['size']) ? (int) $files['size'][$i] : (int) $files['size'];
 
         if ($error !== UPLOAD_ERR_OK) {
-            throw new RuntimeException('File upload error for file: ' . $origName);
+            $errMessage = 'File upload error (' . $error . ') for file: ' . $origName;
+            if ($error === UPLOAD_ERR_INI_SIZE || $error === UPLOAD_ERR_FORM_SIZE) {
+                $errMessage = 'File exceeds server maximum allowed size: ' . $origName;
+            } elseif ($error === UPLOAD_ERR_PARTIAL) {
+                $errMessage = 'File upload interrupted (network connection aborted): ' . $origName;
+            }
+            throw new RuntimeException($errMessage);
         }
 
-        if (!in_array($mime, $allowedTypes, true)) {
+        // Verify file type (using mime_content_type if available or checking extension)
+        $detectedMime = null;
+        if (function_exists('mime_content_type') && file_exists($tmpName)) {
+            $detectedMime = @mime_content_type($tmpName);
+        }
+        $effectiveMime = $detectedMime ?: $mime;
+        $ext = strtolower(pathinfo($origName, PATHINFO_EXTENSION));
+
+        $allowedMimes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+        $allowedExts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+        if (!in_array(strtolower($effectiveMime), $allowedMimes, true) && !in_array($ext, $allowedExts, true)) {
             throw new RuntimeException('Unsupported file type for file: ' . $origName);
         }
 
-        $ext = pathinfo($origName, PATHINFO_EXTENSION);
+        if ($ext === '') {
+            $ext = 'jpg';
+        }
+
         $newFileName = 'TASK' . $taskId . '_' . time() . '_' . ($i + 1) . '.' . $ext;
         $targetPath = $uploadDir . $newFileName;
 
-        if (!move_uploaded_file($tmpName, $targetPath)) {
-            throw new RuntimeException('Failed to move uploaded file: ' . $origName);
+        // Compress and save with GD if available, else move_uploaded_file
+        $saved = compressAndSaveImage($tmpName, $targetPath, $ext);
+        if (!$saved) {
+            if (!move_uploaded_file($tmpName, $targetPath)) {
+                throw new RuntimeException('Failed to move uploaded file: ' . $origName);
+            }
         }
+
+        $finalSize = file_exists($targetPath) ? filesize($targetPath) : $size;
 
         // insert DB row
         $relativePath = 'uploads/ecg_images/' . $newFileName;
@@ -206,8 +316,8 @@ try {
             'task_id' => $taskId,
             'path' => $relativePath,
             'name' => $origName,
-            'size' => $size,
-            'mime' => $mime
+            'size' => $finalSize,
+            'mime' => $effectiveMime
         ]);
 
         $lastImgId = (int) $pdo->lastInsertId();
@@ -406,7 +516,7 @@ try {
     }
     error_log('create_task error: ' . $e->getMessage());
     http_response_code(500);
-    $resp = ['success' => false, 'error' => 'Server error'];
+    $resp = ['success' => false, 'error' => $e->getMessage() ?: 'Server error'];
     if ($is_debug) {
         $resp['detail'] = $e->getMessage();
     }
